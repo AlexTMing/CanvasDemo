@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>demo2</title>
+  <style>
+    #canvasPoint {
+      background: #000;
+    }
+  </style>
+</head>
+<body>
+<canvas id="canvasPoint"></canvas>
+</body>
+<script>
+  // 绘点 的意思就是话一个1px 的圆
+  let canvasPoint = document.getElementById('canvasPoint')
+  let contentPoint = canvasPoint.getContext('2d');
+
+  contentPoint.width = 400;
+  contentPoint.height = 400;
+  contentPoint.beginPath();
+
+  // 画点
+  // contentPoint.arc(100,100, 1 ,0, Math.PI * 2,true)
+  // 画1/4圆
+  contentPoint.arc(100,100, 30 ,0, Math.PI * 0.5,false)
+  // 画直线
+
+  // 添加闭合 会将弧形的起始点 结束点相连接
+  contentPoint.closePath();
+
+  // 画点
+  // contentPoint.fillStyle = 'rgb(255,255,255)';
+  // contentPoint.fill();
+  // 画弧线
+  contentPoint.strokeStyle = 'white';
+  contentPoint.stroke();
+</script>
+</html>

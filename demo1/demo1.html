@@ -3,8 +3,74 @@
 <head>
   <meta charset="UTF-8">
   <title>demo1</title>
+<style>
+  #canvas1{
+    background-color:#000
+  }
+  #canvas2{
+    background-color:#000;
+    width: 400px;
+    height: 400px;
+  }
+  #canvas3 {
+    background: #000;
+  }
+</style>
 </head>
 <body>
+  <!-- 当canvas 没有设置宽高的时候 会自动创建一个300*150 (px) 的画布 -->
+  <!--<canvas id="canvas1"></canvas>-->
 
+
+  <!-- 修改画布的宽高有三种方式 -->
+  <!-- 1. HTML 属性设置 -->
+  <!--<canvas id="canvas1" width="150" height="150"></canvas>-->
+
+  <!-- 2. CSS 设置 (不推荐) -->
+  <!-- 注意 使用css 设置宽高的话 画布会按照 300*150 的比例进行缩放 就是300*150的页面显示在400*400 中-->
+  <!-- 这样就会导致 画布内画的图案变形-->
+  <!--<canvas id="canvas2"></canvas>-->
+
+  <!-- JS 属性设置 -->
+  <canvas id="canvas3"></canvas>
 </body>
+
+<script>
+  // --------------- canvas2 ---------------
+  // let canvas2 = document.getElementById('canvas2');
+  // // 设置维度
+  // let context2 = canvas2.getContext('2d')
+  // // 开始
+  // context2.beginPath()
+  // // 设置起始点位 及画圆的一些参数
+  // // arc 创建圆弧 fill 填充路径
+  // context2.arc(100,100,50,0,Math.PI * 2,true)
+  // // 结束
+  // context2.closePath();
+  // // 填充设置
+  // context2.fillStyle = 'rgb(255,255,255)';
+  // // 填充
+  // context2.fill()
+
+
+  let canvas3 = document.getElementById('canvas3');
+ // canvas.getContext(contextType, contextAttributes);
+ // * contextType 上下文类型
+ // 2d：代表一个二维渲染上下文
+ // webgl：代表一个三维渲染上下文
+ // webgl2（或"experimental-webgl2"）：代表一个三维渲染上下文；这种情况下只能在浏览器中实现 WebGL 版本2 (OpenGL ES 3.0)。
+ // *
+  let context3 = canvas3.getContext('2d');
+ // let cx = canvas3.width = 400;
+ // let cy = canvas3.height = 400;
+ canvas3.width = 400;
+ canvas3.height = 400;
+
+ context3.beginPath();
+ context3.arc(100,100,50,0,Math.PI * 2,true);
+ context3.closePath();
+ context3.fillStyle = "rgb(255,255,255)";
+ context3.fill();
+
+</script>
 </html>
