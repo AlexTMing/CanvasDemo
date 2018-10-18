@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>demo3</title>
+  <style>
+    .canvas{
+      background: #000;
+    }
+  </style>
+</head>
+<body>
+<canvas id="shadow" class="canvas"></canvas>
+
+<canvas id="gradient" class="canvas"></canvas>
+</body>
+<script>
+  // 阴影
+  let canvasShadow = document.getElementById('shadow');
+  let contextShadow = canvasShadow.getContext('2d');
+  canvasShadow.width  = 400;
+  canvasShadow.height = 300;
+  contextShadow.beginPath();
+  contextShadow.arc(100,100,50,0,2*Math.PI,false);
+  contextShadow.fillStyle = '#fff';
+
+  // 阴影样式
+  // 模糊指数
+  contextShadow.shadowBlur = 20;
+  // 模糊颜色
+  contextShadow.shadowColor = '#ddd';
+  contextShadow.fill()
+
+  // 渐变
+  let canvasGradient = document.getElementById('gradient');
+  let contextGradient = canvasGradient.getContext('2d');
+  canvasGradient.width  = 400;
+  canvasGradient.height = 400;
+
+  // createLinearGradient(x0,y0,x1,y1)
+  // 开始渐变的x,开始渐变的y,结束渐变的x,结束渐变的y
+  let grd = contextGradient.createLinearGradient(100,100,50,200);
+  // addColorStop(stop,color) 设置渐变颜色
+  // stop:介于0.0 - 1.0之间 便是渐变中开始于结束的位置
+  // color:在结束位置的css颜色值
+
+  grd.addColorStop(0,'pink');
+  // 如果想要多种颜色渐变 控制stop 多个addColorStop
+  grd.addColorStop(1,'white');
+
+  contextGradient.fillStyle = grd;
+  contextGradient.fillRect(100,100,200,200)
+
+
+
+</script>
+</html>

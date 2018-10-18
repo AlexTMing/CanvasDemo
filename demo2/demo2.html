@@ -7,19 +7,47 @@
     #canvasPoint {
       background: #000;
     }
+    #canvasLine {
+      background: #000;
+    }
+    #rectangle {
+      background: #000;
+    }
   </style>
 </head>
 <body>
 <canvas id="canvasPoint"></canvas>
+<!-- 绘制直线 -->
+<canvas id="canvasLine"></canvas>
+<!-- 绘制矩形 -->
+<canvas id="rectangle"></canvas>
 </body>
 <script>
   // 绘点 的意思就是话一个1px 的圆
   let canvasPoint = document.getElementById('canvasPoint')
   let contentPoint = canvasPoint.getContext('2d');
-
-  contentPoint.width = 400;
-  contentPoint.height = 400;
+  canvasPoint.width = 400;
+  canvasPoint.height = 250;
   contentPoint.beginPath();
+  // 绘直线
+  let canvasLine = document.getElementById('canvasLine')
+  let contextLine = canvasLine.getContext('2d');
+  canvasLine.width = 400;
+  canvasLine.height = 250;
+  contextLine.beginPath();
+  // 绘制矩形
+  let canvasRectangle = document.getElementById('rectangle')
+  let contextRectangle = canvasRectangle.getContext('2d')
+  canvasRectangle.width = 400;
+  canvasRectangle.height = 250;
+  contextRectangle.beginPath();
+  // 填充 实心矩形
+  contextRectangle.fillStyle = '#fff'
+  // x,y,长,宽
+  contextRectangle.fillRect(10,10,100,100);
+  // 线 空心矩形
+  contextRectangle.strokeStyle = '#fff';
+  contextRectangle.strokeRect(130,10,100,100);
 
   // 画点
   // contentPoint.arc(100,100, 1 ,0, Math.PI * 2,true)
@@ -36,5 +64,17 @@
   // 画弧线
   contentPoint.strokeStyle = 'white';
   contentPoint.stroke();
+  // 画直线
+
+  contextLine.lineTo(200,200);
+  contextLine.lineTo(200,100);
+  contextLine.lineTo(100,50);
+  // 设置最大宽度
+  contextLine.lineWidth = 3;
+  // 设置或返回线条的结束端点样式
+  contextLine.lineCap = 'round';
+  contextLine.strokeStyle = '#fff';
+  contextLine.stroke()
+
 </script>
 </html>

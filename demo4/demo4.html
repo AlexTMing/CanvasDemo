@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>demo4</title>
+  <style>
+    .canvas{
+      background: #000;
+    }
+  </style>
+</head>
+<body>
+<canvas class="canvas" id="scale"></canvas>
+<canvas class="canvas" id="rotate"></canvas>
+
+</body>
+<script>
+   let canvasScale = document.getElementById('scale');
+   let contextScale = canvasScale.getContext('2d');
+   canvasScale.width = 400;
+   canvasScale.height = 400;
+
+   contextScale.strokeStyle = 'white';
+   // 绘制矩形路径描边
+   contextScale.strokeRect(5,5,50,25);
+   // scale是叠加的
+   contextScale.scale(2,2);
+   contextScale.strokeRect(5,5,50,25);
+   contextScale.scale(2,2);
+   contextScale.strokeRect(5,5,50,25);
+</script>
+</html>
