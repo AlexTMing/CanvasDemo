@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>随机粒子</title>
+  <style>
+    html,body{
+      margin:0;
+      overflow: hidden;
+      width: 100%;
+      height: 100%;
+      cursor: none;
+      background: black;
+    }
+  </style>
+</head>
+<body>
+<canvas id="canvas"></canvas>
+
+<script>
+  let ctx = document.getElementById('canvas'),
+    content = ctx.getContext('2d'),
+    WIDTH,HEIGHT,round=[],
+    initRoundPopulation = 80,
+    useChache  = true;
+
+  WIDTH = document.documentElement.clientWidth;
+  HEIGHT = document.documentElement.clientHeight;
+
+  ctx.width = WIDTH;
+  ctx.height = HEIGHT;
+
+  function Round_item(index,x,y) {
+    console.log('this',this)
+    this.index = index;
+    this.x = x;
+    this.y = y;
+    this.r = Math.random()*2+1;
+    // 离屏渲染
+    this.useCache = useChache;
+    this.cacheCanvas = document.createElement('canvas');
+    this.cacheCtx = this.cacheCanvas.getContext('2d');
+    this.cacheCtx.width = 6*this.r;
+    this.cacheCtx.height = 6*this.r;
+
+    var alpha = (Math.floor(Math.random()*10)+1)/10/2;
+    this.color = 'rgba(255,255,255,'+alpha+")";
+
+    if(useChache){
+      this.cache();
+    }
+  }
+
+  Round_item.prototype.cache = function () {
+    this.cacheCtx.save();
+    this.cacheCtx.fillStyle = this.color;
+    this.cacheCtx.shadowColor = "white";
+    this.cacheCtx.shadowBlur = this.r * 2;
+    this.cacheCtx.beginPath();
+    this.cacheCtx.arc(this.r * 3, this.r * 3, this.r, 0, 2 * Math.PI);
+    this.cacheCtx.closePath();
+    this.cacheCtx.fill();
+    this.cacheCtx.restore();
+  };
+
+  Round_item.prototype.draw = function () {
+    if(!useChache){
+      content.fillStyle = this.color;
+      content.shadowBlur = this.r*2;
+      content.beginPath();
+      content.arc(this.x, this.y, this.r, 0,2*Math.PI, false);
+      content.closePath();
+      content.fill();
+    }else{
+      content.drawImage(this.cacheCanvas,this.x-this.r,this.y-this.r);
+    }
+  }
+
+  Round_item.prototype.move = function () {
+    // 仅在y轴进行运动
+    this.y -=0.15;
+    if(this.y <= -10){
+      this.y = HEIGHT + 10;
+    }
+    this.draw();
+  }
+
+  function init() {
+    for (let i = 0; i <initRoundPopulation; i++){
+      round[i] = new Round_item(i,Math.random()*WIDTH,Math.random()*HEIGHT);
+      round[i].draw();
+    }
+    animate();
+  }
+
+  function animate(){
+    // 清除画布屏幕内容
+    content.clearRect(0,0,WIDTH,HEIGHT)
+    for(let i in round){
+      round[i].move();
+    }
+    // 大多数电脑显示器的刷新频率是 60Hz，大概相当于每秒钟重绘 60 次。
+    // 最平滑动画的最佳循环间隔是 1000ms/60，约等于 16.6ms。
+    requestAnimationFrame(animate)
+  }
+
+
+  init()
+
+
+</script>
+
+</body>
+</html>

@@ -28,5 +28,20 @@
    contextScale.strokeRect(5,5,50,25);
    contextScale.scale(2,2);
    contextScale.strokeRect(5,5,50,25);
+
+   let canvasRotate = document.getElementById('rotate');
+   let contextRotate = canvasRotate.getContext('2d');
+   canvasRotate.width = 400;
+   canvasRotate.height = 400;
+
+   contextRotate.fillStyle = 'white';
+   // .rotate(angle);  angle 旋转角度,以弧记
+   // 旋转公式 degrees*Math.PI/180 degrees需要旋转的度数
+   contextRotate.rotate(20*Math.PI/180);
+   contextRotate.fillRect(70,30,200,100)
+
+
+
+
 </script>
 </html>
