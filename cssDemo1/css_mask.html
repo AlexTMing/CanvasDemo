@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>mask</title>
+  <style>
+    {/*遮罩图片一般选用png 或者svg  因为jpg不透明*/}
+    .mask-image{
+      width: 200px;
+      mask-image: url("./img/102.svg");
+      -webkit-mask-image: url("./img/102.svg");
+      /*-webkit-mask-image: url(#mask);*/
+      /*mask-image: url(#mask);*/
+    }
+    svg {
+      width: 0; height: 0;
+      position: absolute;
+    }
+  </style>
+</head>
+<body>
+  <img src="./img/100.jpg" class="mask-image"/>
+
+  <!--测试修改svg 达到自己想要的效果-->
+  <!--开始-->
+  <!--<svg width="50" height="50" version="1.1" xmlns="http://www.w3.org/2000/svg">-->
+    <!--<ellipse cx="25" cy="25" rx="20" ry="10" fill="#000000" stroke="none"></ellipse>-->
+    <!--<rect x="15" y="5" width="20" height="40" rx="5" ry="5" fill="#000000" stroke="none"></rect>-->
+  <!--</svg>-->
+
+  <!--修改-->
+  <!--<svg>-->
+    <!--<defs>-->
+      <!--<mask id="mask" maskContentUnits="objectBoundingBox">-->
+        <!--&lt;!&ndash; 柔化边缘 &ndash;&gt;-->
+        <!--<ellipse cx=".5" cy=".5" rx=".48" ry=".28" fill="black"></ellipse>-->
+        <!--<rect x=".2" y="0" width=".6" height="1" rx=".1" ry=".1" fill="black"></rect>-->
+        <!--&lt;!&ndash; 主体遮罩 &ndash;&gt;-->
+        <!--<ellipse cx=".5" cy=".5" rx=".4" ry=".2" fill="white"></ellipse>-->
+        <!--<rect x=".3" y=".1" width=".4" height=".8" rx=".1" ry=".1" fill="white"></rect>-->
+      <!--</mask>-->
+    <!--</defs>-->
+  <!--</svg>-->
+</body>
+</html>
