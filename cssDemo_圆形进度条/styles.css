@@ -1,0 +1,64 @@
+body{
+  margin: 0;
+}
+.box{
+  width:200px;
+  height:200px;
+  padding:5px;
+  /* 居中 */
+  position: absolute;
+  top:50%;
+  left:50%;
+  transform: translate(-50%,-50%);
+
+  border: 5px solid #ffcc00;
+  border-radius: 50%;
+  overflow: hidden;
+}
+.wave {
+  position: relative;
+  width: 200px;
+  height: 200px;
+  background-color: #ffcc00;
+  border-radius: 50%;
+}
+.wave::before,
+.wave::after{
+  content: "";
+  position: absolute;
+  width: 400px;
+  height: 400px;
+  top: 0;
+  left: 50%;
+  background-color: rgba(255, 255, 255, .4);
+  border-radius: 45%;
+  /*
+   * translate 进行2d转化
+   * rotate 旋转
+   */
+  transform: translate(-50%, -70%) rotate(0);
+  /*
+   * 动画 rotate
+   */
+  animation: rotate 6s linear infinite;
+  z-index: 10;
+}
+
+/* 对after 做特殊区分*/
+.wave::after {
+  border-radius: 47%;
+  background-color: rgba(255, 255, 255, .9);
+  transform: translate(-50%, -70%) rotate(0);
+  animation: rotate 10s linear -5s infinite;
+  z-index: 20;
+}
+
+/* 动态控制动画的 垂直方向的移动就可以做成进度条 */
+@keyframes rotate {
+  50% {
+    transform: translate(-50%, -73%) rotate(180deg);
+  }
+  100% {
+    transform: translate(-50%, -70%) rotate(360deg);
+  }
+}
